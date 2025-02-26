@@ -1,0 +1,115 @@
+﻿@model ApplicationUser
+
+<div class="signup-form-container">
+    <h2>Sign Up</h2>
+    <form method="post" asp-action="SignUp" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label">User Name</label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label">Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Password" class="control-label">Password</label>
+            <input id="password" name="password" class="form-control" type="password" required />
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword" class="control-label">Confirm Password</label>
+            <input id="confirmPassword" name="confirmPassword" class="form-control" type="password" required />
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Age" class="control-label">Age</label>
+            <input asp-for="Age" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Image">Upload Profile Image:</label>
+            <input type="file" name="uploadedFile" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Role" class="control-label">Role</label>
+            <select class="form-control" name="Role" id="Role" required>
+                <option value="">Select a role</option>
+                <option value="Instructor">Instructor</option>
+                <option value="Student">Student</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+    </form>
+</div>
+
+
+<style>
+    .signup-form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: mintcream;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .signup-form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        height: 40px;
+        border-radius: 15px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+        background-color: #298EE5;
+        font-weight: bold;
+    }
+
+    .alert-danger {
+        margin-top: 20px;
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    #btn-sign_with_social {
+        width: 100%;
+        border-radius: 15px;
+        height: 50px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+        #btn-sign_with_social:hover {
+            background-color: lightblue;
+        }
+</style>
